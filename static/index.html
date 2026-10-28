@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Media Calendar</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Media Calendar</h1>
+    <span id="today"></span>
+  </div>
+  <nav id="tabs">
+    <button data-view="meeting" class="active">Weekly meeting</button>
+    <button data-view="calendar">Calendar</button>
+    <button data-view="plan">6-month plan</button>
+    <button data-view="list">All items</button>
+  </nav>
+  <button class="primary" id="addBtn">+ Add item</button>
+</header>
+<main id="view"></main>
+
+<dialog id="editor">
+  <form method="dialog" id="editForm">
+    <div class="dlg-head">
+      <h2 id="edTitle">Item</h2>
+      <button type="button" class="ghost" id="closeBtn" aria-label="Close">✕</button>
+    </div>
+    <label>Title<input name="title" required></label>
+    <div class="row">
+      <label>Type
+        <select name="type">
+          <option>Launch</option><option>Shoot</option><option>Content Idea</option><option>Other</option>
+        </select>
+      </label>
+      <label>Date<input name="date" type="date" required></label>
+    </div>
+    <div class="row">
+      <label>Owner<input name="owner" list="owners" placeholder="Who's on it"></label>
+      <label>Channel<input name="channel" placeholder="Email, Social, TV…"></label>
+    </div>
+    <label>Start working on it this many days before the date
+      <input name="leadDays" type="number" min="0" max="365">
+    </label>
+    <label>Notes / links<textarea name="notes" rows="3"></textarea></label>
+    <div class="checklist-head">
+      <h3>Checklist <span id="edProgress"></span></h3>
+    </div>
+    <ul id="edChecklist" class="checklist"></ul>
+    <div class="add-step">
+      <input id="newStep" placeholder="Add a step…">
+      <button type="button" id="addStep">Add</button>
+    </div>
+    <div class="dlg-foot">
+      <button type="button" class="danger ghost" id="deleteBtn">Delete</button>
+      <span class="spacer"></span>
+      <button type="button" id="cancelBtn">Cancel</button>
+      <button type="submit" class="primary">Save</button>
+    </div>
+  </form>
+</dialog>
+<datalist id="owners"></datalist>
+<script src="/static/app.js"></script>
+</body>
+</html>
